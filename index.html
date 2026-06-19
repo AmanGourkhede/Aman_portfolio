@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aman Gourkhede — ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d1117;
+      --bg2:       #161b22;
+      --bg3:       #1c2128;
+      --border:    #30363d;
+      --purple:    #6e57f7;
+      --purple2:   #8b74ff;
+      --green:     #22c55e;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --card-hover:#21262d;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: 'Fira Code', monospace;
+      font-size: 1rem;
+      color: var(--purple);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── Sections ── */
+    section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding-top: 80px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: var(--purple);
+      background: rgba(110,87,247,0.1);
+      border: 1px solid rgba(110,87,247,0.3);
+      border-radius: 20px;
+      padding: 0.3rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-name {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 0%, var(--purple2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    .hero-sub span { color: var(--text); font-weight: 500; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--purple);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--purple2); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--purple); color: var(--purple); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem; flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-size: 1.8rem; font-weight: 800;
+      color: var(--purple);
+      font-family: 'Fira Code', monospace;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ── Section headings ── */
+    .section-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: var(--purple);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .section-line {
+      width: 50px; height: 3px;
+      background: linear-gradient(90deg, var(--purple), transparent);
+      border-radius: 2px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── About ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.8; }
+    .about-text p span { color: var(--text); font-weight: 500; }
+    .about-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .about-card-row {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .about-card-row:last-child { border-bottom: none; }
+    .about-card-row .label { color: var(--muted); min-width: 90px; }
+    .about-card-row .value { color: var(--text); }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--purple); transform: translateY(-3px); }
+    .skill-card-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--purple);
+      margin-bottom: 1rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.78rem;
+      background: rgba(110,87,247,0.1);
+      color: var(--purple2);
+      border: 1px solid rgba(110,87,247,0.2);
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+    }
+
+    /* ── Projects ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--purple2));
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .project-card:hover { border-color: var(--purple); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(110,87,247,0.15); }
+    .project-card:hover::before { opacity: 1; }
+    .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+    .project-icon { font-size: 1.5rem; }
+    .project-links { display: flex; gap: 0.5rem; }
+    .project-link {
+      color: var(--muted); text-decoration: none; font-size: 0.85rem;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .project-link:hover { color: var(--purple); border-color: var(--purple); }
+    .project-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .project-sub { font-size: 0.78rem; color: var(--purple); font-family: 'Fira Code', monospace; margin-bottom: 0.75rem; }
+    .project-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.25rem; flex: 1; }
+    .project-stats {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .project-stat {
+      font-size: 0.8rem;
+      background: rgba(34,197,94,0.08);
+      color: var(--green);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 6px;
+      padding: 0.2rem 0.6rem;
+      font-family: 'Fira Code', monospace;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
+    .project-tag {
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+    }
+
+    /* ── Education / Certs ── */
+    .edu-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .edu-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--purple);
+      border-radius: 0 12px 12px 0;
+      padding: 1.25rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 1rem;
+      transition: background 0.2s;
+    }
+    .edu-card:hover { background: var(--card-hover); }
+    .edu-degree { font-weight: 600; font-size: 1rem; margin-bottom: 0.25rem; }
+    .edu-inst { color: var(--muted); font-size: 0.9rem; }
+    .edu-detail { color: var(--purple); font-size: 0.85rem; margin-top: 0.3rem; font-family: 'Fira Code', monospace; }
+    .edu-year { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+
+    /* ── Contact ── */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.75rem;
+      color: var(--text); text-decoration: none;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1.25rem;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+    .contact-link:hover { border-color: var(--purple); color: var(--purple); transform: translateX(4px); }
+    .contact-link .icon { font-size: 1.1rem; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.6s ease forwards; }
+    .fade-up-2 { animation: fadeUp 0.6s 0.15s ease both; }
+    .fade-up-3 { animation: fadeUp 0.6s 0.3s ease both; }
+    .fade-up-4 { animation: fadeUp 0.6s 0.45s ease both; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <a class="nav-logo" href="#">aman.dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="btn btn-primary" href="mailto:amangourkhede03@gmail.com" style="font-size:0.85rem;padding:0.5rem 1.2rem;">Hire Me</a>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="hero-tag fade-up">🚀 Open to Junior ML Engineer Roles</div>
+  <h1 class="hero-name fade-up-2">Aman Dinesh<br/>Gourkhede</h1>
+  <p class="hero-sub fade-up-3">
+    <span>Machine Learning Engineer</span> specialising in
+    <span>Generative AI</span>, <span>LLM Systems</span>, and
+    <span>Computer Vision</span> — building AI that works in the real world.
+  </p>
+  <div class="hero-btns fade-up-4">
+    <a class="btn btn-primary" href="#projects">View Projects</a>
+    <a class="btn btn-outline" href="https://github.com/AmanGourkhede" target="_blank">GitHub</a>
+    <a class="btn btn-outline" href="https://linkedin.com/in/aman-gourkhede" target="_blank">LinkedIn</a>
+  </div>
+  <div class="hero-stats fade-up-4">
+    <div class="stat-item">
+      <div class="stat-num">93.52%</div>
+      <div class="stat-label">Skin Cancer Classifier Accuracy</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Production AI Projects</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">60+</div>
+      <div class="stat-label">Golden Dataset Samples (MRDS)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">IBM</div>
+      <div class="stat-label">RAG & Agentic AI Certified</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<section id="about">
+  <div class="section-tag">// about me</div>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="section-line"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a <span>fresh B.Tech graduate</span> in Computer Science from YCCE Nagpur with deep hands-on experience building production ML systems — from medical computer vision to LLM evaluation pipelines.
+      </p>
+      <p>
+        My flagship project is a <span>skin cancer detection system</span> achieving 93.52% accuracy across 7 lesion categories using a CNN + ResNet50 ensemble with a custom digital hair removal pipeline.
+      </p>
+      <p>
+        I also built <span>MRDS</span> — a CI/CD-style regression detection system for LLMs that tests classifiers against a golden dataset, detects quality drops across prompt versions, and alerts via Slack in real time.
+      </p>
+      <p>
+        I'm passionate about <span>Generative AI</span>, RAG systems, and agentic workflows — and I'm actively seeking a Junior ML Engineer role where I can contribute to real-world AI solutions.
+      </p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-row"><span class="label">📍 Location</span><span class="value">Nagpur, India</span></div>
+      <div class="about-card-row"><span class="label">🎓 Degree</span><span class="value">B.Tech CSE — YCCE (2025)</span></div>
+      <div class="about-card-row"><span class="label">📊 CGPA</span><span class="value">7.2 / 10</span></div>
+      <div class="about-card-row"><span class="label">📜 Cert</span><span class="value">IBM RAG & Agentic AI</span></div>
+      <div class="about-card-row"><span class="label">💼 Status</span><span class="value" style="color:var(--green);">Open to Work ✓</span></div>
+      <div class="about-card-row"><span class="label">📧 Email</span><span class="value">amangourkhede03@gmail.com</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Skills ── -->
+<section id="skills">
+  <div class="section-tag">// tech stack</div>
+  <h2 class="section-title">Skills & Tools</h2>
+  <div class="section-line"></div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-title">🐍 Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">C++</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">🤖 AI / ML</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">Keras</span>
+        <span class="skill-tag">Scikit-Learn</span>
+        <span class="skill-tag">XGBoost</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">NumPy</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">🧬 Generative AI & LLMs</div>
+      <div class="skill-tags">
+        <span class="skill-tag">LangChain</span>
+        <span class="skill-tag">LangGraph</span>
+        <span class="skill-tag">RAG</span>
+        <span class="skill-tag">Agentic AI</span>
+        <span class="skill-tag">ChromaDB</span>
+        <span class="skill-tag">OpenAI API</span>
+        <span class="skill-tag">Prompt Engineering</span>
+        <span class="skill-tag">Vector DBs</span>
+        <span class="skill-tag">MCP</span>
+        <span class="skill-tag">Multimodal AI</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">👁️ Computer Vision</div>
+      <div class="skill-tags">
+        <span class="skill-tag">CNN</span>
+        <span class="skill-tag">ResNet50</span>
+        <span class="skill-tag">Transfer Learning</span>
+        <span class="skill-tag">OpenCV</span>
+        <span class="skill-tag">Data Augmentation</span>
+        <span class="skill-tag">Ensemble Modeling</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">⚙️ MLOps & DevOps</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">Flask</span>
+        <span class="skill-tag">REST API</span>
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">Heroku</span>
+        <span class="skill-tag">GitHub Actions</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Linux</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">📊 Evaluation Metrics</div>
+      <div class="skill-tags">
+        <span class="skill-tag">RMSE</span>
+        <span class="skill-tag">Precision@K</span>
+        <span class="skill-tag">F1-Score</span>
+        <span class="skill-tag">AUC-ROC</span>
+        <span class="skill-tag">Accuracy</span>
+        <span class="skill-tag">Confusion Matrix</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Projects ── -->
+<section id="projects">
+  <div class="section-tag">// what i've built</div>
+  <h2 class="section-title">Featured Projects</h2>
+  <div class="section-line"></div>
+  <div class="projects-grid">
+
+    <!-- MRDS -->
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-icon">🤖</span>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/AmanGourkhede/MRDS" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="project-name">MRDS — Model Regression Detection System</div>
+      <div class="project-sub">LLM Eval Pipeline · 2026</div>
+      <p class="project-desc">
+        CI/CD-style pipeline that continuously tests LLM classifiers against a 60-sample golden dataset, detects quality regressions across prompt versions, and fires real-time Slack alerts. Features a live Streamlit dashboard with Plotly trend charts, HTML reports, Docker support, and GitHub Actions CI.
+      </p>
+      <div class="project-stats">
+        <span class="project-stat">60-sample golden dataset</span>
+        <span class="project-stat">3 scoring signals</span>
+        <span class="project-stat">7-run drift detection</span>
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">Python 3.11</span>
+        <span class="project-tag">Ollama</span>
+        <span class="project-tag">llama3.2</span>
+        <span class="project-tag">Pydantic v2</span>
+        <span class="project-tag">SQLite</span>
+        <span class="project-tag">Streamlit</span>
+        <span class="project-tag">Docker</span>
+        <span class="project-tag">GitHub Actions</span>
+        <span class="project-tag">sentence-transformers</span>
+      </div>
+    </div>
+
+    <!-- Skin Cancer -->
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-icon">🔬</span>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/AmanGourkhede/skin-cancer-detection-ai" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="project-name">Skin Cancer Detection System</div>
+      <div class="project-sub">B.Tech Mega Project · 2024–2025</div>
+      <p class="project-desc">
+        Full-stack deep learning application achieving 93.52% accuracy across 7 lesion categories using a CNN + ResNet50 Transfer Learning ensemble. Features a custom Digital Hair Removal pipeline via OpenCV morphological operations to reduce dermoscopy noise before inference.
+      </p>
+      <div class="project-stats">
+        <span class="project-stat">93.52% accuracy</span>
+        <span class="project-stat">+8% vs baseline</span>
+        <span class="project-stat">7 lesion classes</span>
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">TensorFlow</span>
+        <span class="project-tag">Keras</span>
+        <span class="project-tag">ResNet50</span>
+        <span class="project-tag">OpenCV</span>
+        <span class="project-tag">Flask</span>
+        <span class="project-tag">HAM10000</span>
+        <span class="project-tag">ISIC 2024</span>
+        <span class="project-tag">Tailwind CSS</span>
+      </div>
+    </div>
+
+    <!-- Jarvis -->
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-icon">🧬</span>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/AmanGourkhede" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="project-name">Jarvis — Personal AI Agent</div>
+      <div class="project-sub">Agentic AI · 2026 – Present</div>
+      <p class="project-desc">
+        Modular production-style LangChain + LangGraph agent executing multi-step agentic workflows — research, summarization, task automation — with a pluggable tool-use framework (web search, file manager, code executor). Integrated RAG with ChromaDB for Q&A over private local files with persistent long-term memory.
+      </p>
+      <div class="project-stats">
+        <span class="project-stat">RAG + ChromaDB</span>
+        <span class="project-stat">Persistent memory</span>
+        <span class="project-stat">Multi-step agents</span>
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">LangChain</span>
+        <span class="project-tag">LangGraph</span>
+        <span class="project-tag">ChromaDB</span>
+        <span class="project-tag">RAG</span>
+        <span class="project-tag">Agentic AI</span>
+        <span class="project-tag">Vector DBs</span>
+        <span class="project-tag">Python</span>
+      </div>
+    </div>
+
+    <!-- Recommendation Engine -->
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-icon">🎯</span>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/AmanGourkhede" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="project-name">Hybrid Recommendation Engine</div>
+      <div class="project-sub">ML Internship Project · 2025</div>
+      <p class="project-desc">
+        Production recommendation system combining TF-IDF content-based filtering and SVD collaborative filtering to solve the cold-start problem for new users. Deployed as a production REST API with Flask + JWT authentication, containerized via Docker and shipped to AWS/Heroku with CI/CD automation.
+      </p>
+      <div class="project-stats">
+        <span class="project-stat">Cold-start solved</span>
+        <span class="project-stat">~40% faster deploy</span>
+        <span class="project-stat">AWS + Heroku</span>
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Flask</span>
+        <span class="project-tag">TF-IDF</span>
+        <span class="project-tag">SVD</span>
+        <span class="project-tag">Docker</span>
+        <span class="project-tag">AWS</span>
+        <span class="project-tag">JWT Auth</span>
+        <span class="project-tag">Scikit-Surprise</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Education ── -->
+<section id="education">
+  <div class="section-tag">// background</div>
+  <h2 class="section-title">Education & Certifications</h2>
+  <div class="section-line"></div>
+  <div class="edu-list">
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">📜 IBM RAG & Agentic AI Professional Certificate</div>
+        <div class="edu-inst">Coursera — 10-course specialization</div>
+        <div class="edu-detail">RAG · Multimodal AI · LangChain · LangGraph · CrewAI · AG2 · MCP · Vector Databases</div>
+      </div>
+      <div class="edu-year">In Progress</div>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">🎓 B.Tech — Computer Science & Engineering</div>
+        <div class="edu-inst">YCCE Nagpur</div>
+        <div class="edu-detail">CGPA: 7.2 / 10 · Machine Learning · Deep Learning · Computer Vision · DSA · DBMS</div>
+      </div>
+      <div class="edu-year">2022 – 2025</div>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">📘 Diploma — Computer Engineering</div>
+        <div class="edu-inst">Government Polytechnic Nagpur</div>
+        <div class="edu-detail">Aggregate: 87%</div>
+      </div>
+      <div class="edu-year">2019 – 2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section id="contact">
+  <div class="section-tag">// get in touch</div>
+  <h2 class="section-title">Contact Me</h2>
+  <div class="section-line"></div>
+  <div class="contact-wrapper">
+    <div class="contact-text">
+      <p>I'm actively looking for <strong>Junior ML Engineer</strong> roles, open to freelance AI projects, and always happy to collaborate on interesting research.</p>
+      <p>Whether you want to talk about LLMs, computer vision, or just geek out about AI — feel free to reach out!</p>
+      <p style="color:var(--green); font-family:'Fira Code',monospace; font-size:0.9rem;">📍 Based in Nagpur, India · Open to remote</p>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:amangourkhede03@gmail.com">
+        <span class="icon">📧</span> amangourkhede03@gmail.com
+      </a>
+      <a class="contact-link" href="tel:+919028047221">
+        <span class="icon">📱</span> +91-9028047221
+      </a>
+      <a class="contact-link" href="https://linkedin.com/in/aman-gourkhede" target="_blank">
+        <span class="icon">💼</span> linkedin.com/in/aman-gourkhede
+      </a>
+      <a class="contact-link" href="https://github.com/AmanGourkhede" target="_blank">
+        <span class="icon">🐙</span> github.com/AmanGourkhede
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>Designed & built by <span style="color:var(--purple);">Aman Gourkhede</span> · 2026</p>
+  <p style="margin-top:0.4rem; font-size:0.75rem;">Python · PyTorch · LangChain · Docker · Open Source</p>
+</footer>
+
+</body>
+</html>
